@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Rising Waters — Flood Prediction System{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="gauge-bg" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a href="/" class="brand">
+      <span class="brand-mark">≈</span>
+      <span class="brand-text">Rising&nbsp;Waters</span>
+    </a>
+    <nav class="site-nav">
+      <a href="/">Predict</a>
+      <a href="/about">Model Info</a>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <span>Flood Early-Warning System — built for disaster response teams</span>
+  </footer>
+</body>
+</html>

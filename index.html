@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <p class="eyebrow">Early-Warning Console</p>
+  <h1>Read the sky before<br />the water rises.</h1>
+  <p class="hero-sub">
+    Enter current meteorological readings for a district or region.
+    The <strong>{{ model_name }}</strong> model — validated at
+    <strong>{{ model_accuracy }}% accuracy</strong> on historical flood
+    records — will classify the flood risk in seconds.
+  </p>
+</section>
+
+<section class="panel form-panel">
+  <form action="/predict" method="POST" class="predict-form">
+
+    <div class="field-group">
+      <h2 class="group-title">Rainfall</h2>
+      <div class="field">
+        <label for="annual_rainfall_mm">Annual rainfall (mm)</label>
+        <input type="number" step="0.1" min="0" name="annual_rainfall_mm" id="annual_rainfall_mm" placeholder="e.g. 2300" required />
+      </div>
+      <div class="field">
+        <label for="seasonal_rainfall_mm">Seasonal / monsoon rainfall (mm)</label>
+        <input type="number" step="0.1" min="0" name="seasonal_rainfall_mm" id="seasonal_rainfall_mm" placeholder="e.g. 1600" required />
+      </div>
+    </div>
+
+    <div class="field-group">
+      <h2 class="group-title">Atmosphere</h2>
+      <div class="field">
+        <label for="cloud_visibility_km">Cloud visibility (km)</label>
+        <input type="number" step="0.1" min="0" max="20" name="cloud_visibility_km" id="cloud_visibility_km" placeholder="e.g. 4.5" required />
+      </div>
+      <div class="field">
+        <label for="humidity_percent">Humidity (%)</label>
+        <input type="number" step="0.1" min="0" max="100" name="humidity_percent" id="humidity_percent" placeholder="e.g. 78" required />
+      </div>
+      <div class="field">
+        <label for="temperature_celsius">Temperature (°C)</label>
+        <input type="number" step="0.1" name="temperature_celsius" id="temperature_celsius" placeholder="e.g. 28" required />
+      </div>
+    </div>
+
+    <div class="field-group">
+      <h2 class="group-title">Ground &amp; River</h2>
+      <div class="field">
+        <label for="river_discharge_cusecs">River discharge (cusecs)</label>
+        <input type="number" step="0.1" min="0" name="river_discharge_cusecs" id="river_discharge_cusecs" placeholder="e.g. 2200" required />
+      </div>
+      <div class="field">
+        <label for="soil_moisture_percent">Soil moisture (%)</label>
+        <input type="number" step="0.1" min="0" max="100" name="soil_moisture_percent" id="soil_moisture_percent" placeholder="e.g. 65" required />
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Assess flood risk</button>
+  </form>
+</section>
+
+<section class="scenarios">
+  <div class="scenario-card">
+    <span class="scenario-num">01</span>
+    <h3>Early Warning</h3>
+    <p>Meteorologists enter live rainfall and visibility readings to trigger evacuation advisories hours in advance.</p>
+  </div>
+  <div class="scenario-card">
+    <span class="scenario-num">02</span>
+    <h3>Resource Allocation</h3>
+    <p>Relief coordinators monitor several regions at once, prioritising deployment where risk is highest.</p>
+  </div>
+  <div class="scenario-card">
+    <span class="scenario-num">03</span>
+    <h3>Model Validation</h3>
+    <p>Analysts test predictions against historical flood records to confirm operational reliability.</p>
+  </div>
+</section>
+
+{% endblock %}
